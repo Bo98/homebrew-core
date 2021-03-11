@@ -1,10 +1,21 @@
 class Pypy3 < Formula
   desc "Implementation of Python 3 in Python"
   homepage "https://pypy.org/"
-  url "https://downloads.python.org/pypy/pypy3.7-v7.3.3-src.tar.bz2"
-  sha256 "f6c96401f76331e474cca2d14437eb3b2f68a0f27220a6dcbc537445fe9d5b78"
   license "MIT"
+  revision 1
   head "https://foss.heptapod.net/pypy/pypy", using: :hg, branch: "py3.7"
+
+  stable do
+    url "https://downloads.python.org/pypy/pypy3.7-v7.3.3-src.tar.bz2"
+    sha256 "f6c96401f76331e474cca2d14437eb3b2f68a0f27220a6dcbc537445fe9d5b78"
+
+    # Support for Big Sur.
+    # Remove with the next release.
+    patch do
+      url "https://raw.githubusercontent.com/Homebrew/formula-patches/e4a53dcb8d3b2f2f6cc30bb522d0443cbef4681b/pypy3/big-sur.diff"
+      sha256 "1835dbbd6a0534964978fc3d78f7e9f850d0de8f221378f4d739a4ae9348d4cb"
+    end
+  end
 
   livecheck do
     url "https://downloads.python.org/pypy/"
@@ -20,9 +31,6 @@ class Pypy3 < Formula
   depends_on "pypy" => :build
   depends_on arch: :x86_64
   depends_on "gdbm"
-  # pypy does not find system libffi, and its location cannot be given
-  # as a build option
-  depends_on "libffi" if DevelopmentTools.clang_build_version >= 1000
   depends_on "openssl@1.1"
   depends_on "sqlite"
   depends_on "tcl-tk"
@@ -34,13 +42,13 @@ class Pypy3 < Formula
   uses_from_macos "zlib"
 
   resource "setuptools" do
-    url "https://files.pythonhosted.org/packages/94/23/e9e3d96500c063129a19feb854efbb01e6ffe7d913f1da8176692418ab8e/setuptools-51.1.1.tar.gz"
-    sha256 "0b43d1e0e0ac1467185581c2ceaf86b5c1a1bc408f8f6407687b0856302d1850"
+    url "https://files.pythonhosted.org/packages/18/c0/36f3e535bf1fef10a8f0f6fbf5ea5f2a39e0a24b4b308058fc78af5237c5/setuptools-54.1.1.tar.gz"
+    sha256 "1ce82798848a978696465866bb3aaab356003c42d6143e1111fcf069ac838274"
   end
 
   resource "pip" do
-    url "https://files.pythonhosted.org/packages/ca/1e/d91d7aae44d00cd5001957a1473e4e4b7d1d0f072d1af7c34b5899c9ccdf/pip-20.3.3.tar.gz"
-    sha256 "79c1ac8a9dccbec8752761cb5a2df833224263ca661477a2a9ed03ddf4e0e3ba"
+    url "https://files.pythonhosted.org/packages/b7/2d/ad02de84a4c9fd3b1958dc9fb72764de1aa2605a9d7e943837be6ad82337/pip-21.0.1.tar.gz"
+    sha256 "99bbde183ec5ec037318e774b0d8ae0a64352fe53b2c7fd630be1d07e94f41e5"
   end
 
   def install
