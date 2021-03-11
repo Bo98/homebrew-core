@@ -1,10 +1,21 @@
 class Pypy < Formula
   desc "Highly performant implementation of Python 2 in Python"
   homepage "https://pypy.org/"
-  url "https://downloads.python.org/pypy/pypy2.7-v7.3.3-src.tar.bz2"
-  sha256 "f63488051ba877fd65840bf8d53822a9c6423d947839023b8720139f4b6e2336"
   license "MIT"
+  revision 1
   head "https://foss.heptapod.net/pypy/pypy", using: :hg
+
+  stable do
+    url "https://downloads.python.org/pypy/pypy2.7-v7.3.3-src.tar.bz2"
+    sha256 "f63488051ba877fd65840bf8d53822a9c6423d947839023b8720139f4b6e2336"
+
+    # Support for Big Sur.
+    # Remove with the next release.
+    patch do
+      url "https://raw.githubusercontent.com/Homebrew/formula-patches/427d2b2782d5301f82eb67fd7173d103a0636b39/pypy/big-sur.diff"
+      sha256 "baa4394699f9dc83781d86a886493fe43d56e7d073033eae0f02d0b15d432cbc"
+    end
+  end
 
   livecheck do
     url "https://downloads.python.org/pypy/"
@@ -19,9 +30,6 @@ class Pypy < Formula
   depends_on "pkg-config" => :build
   depends_on arch: :x86_64
   depends_on "gdbm"
-  # pypy does not find system libffi, and its location cannot be given
-  # as a build option
-  depends_on "libffi" if DevelopmentTools.clang_build_version >= 1000
   depends_on "openssl@1.1"
   depends_on "sqlite"
   depends_on "tcl-tk"
@@ -43,9 +51,10 @@ class Pypy < Formula
     sha256 "c67aa55db532a0dadc4d2e20ba9961cbd3ccc84d544e9029699822542b5a476b"
   end
 
+  # Pip 21 removed support for Python 2.
   resource "pip" do
-    url "https://files.pythonhosted.org/packages/ca/1e/d91d7aae44d00cd5001957a1473e4e4b7d1d0f072d1af7c34b5899c9ccdf/pip-20.3.3.tar.gz"
-    sha256 "79c1ac8a9dccbec8752761cb5a2df833224263ca661477a2a9ed03ddf4e0e3ba"
+    url "https://files.pythonhosted.org/packages/53/7f/55721ad0501a9076dbc354cc8c63ffc2d6f1ef360f49ad0fbcce19d68538/pip-20.3.4.tar.gz"
+    sha256 "6773934e5f5fc3eaa8c5a44949b5b924fc122daa0a8aa9f80c835b4ca2a543fc"
   end
 
   def install
