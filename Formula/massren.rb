@@ -22,7 +22,7 @@ class Massren < Formula
     ENV["GO111MODULE"] = "auto"
     (buildpath/"src/github.com/laurent22/massren").install buildpath.children
     cd "src/github.com/laurent22/massren" do
-      system "go", "build", "-o", bin/"massren"
+      system "go", "build", *std_go_args
       prefix.install_metafiles
     end
   end
