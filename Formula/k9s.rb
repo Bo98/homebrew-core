@@ -17,10 +17,9 @@ class K9s < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-ldflags",
-             "-s -w -X github.com/derailed/k9s/cmd.version=#{version}
-             -X github.com/derailed/k9s/cmd.commit=#{Utils.git_head}",
-             *std_go_args
+    system "go", "build",
+             *std_go_args(ldflags: "-s -w -X github.com/derailed/k9s/cmd.version=#{version}
+             -X github.com/derailed/k9s/cmd.commit=#{Utils.git_head}")
   end
 
   test do
