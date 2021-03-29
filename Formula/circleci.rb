@@ -30,8 +30,7 @@ class Circleci < Formula
         -X github.com/CircleCI-Public/circleci-cli/version.Commit=#{Utils.git_short_head}
       ]
       system "make", "pack"
-      system "go", "build", "-ldflags", ldflags.join(" "),
-             "-o", bin/"circleci"
+      system "go", "build", *std_go_args(ldflags: ldflags.join(" "))
       prefix.install_metafiles
     end
   end
