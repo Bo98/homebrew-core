@@ -23,7 +23,7 @@ class HasuraCli < Formula
     ]
 
     cd "cli" do
-      system "go", "build", *std_go_args, "-ldflags", ldflags.join(" "), "-o", bin/"hasura", "./cmd/hasura/"
+      system "go", "build", *std_go_args(ldflags: ldflags.join(" ")), "-o", bin/"hasura", "./cmd/hasura/"
 
       system bin/"hasura", "completion", "bash", "--file", "completion_bash"
       bash_completion.install "completion_bash" => "hasura"
