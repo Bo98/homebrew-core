@@ -20,9 +20,9 @@ class C14Cli < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-trimpath", "-o", bin/"c14",
-           "-ldflags", "-X github.com/online-net/c14-cli/pkg/version.GITCOMMIT=homebrew",
-           "./cmd/c14/"
+    system "go", "build", *std_go_args(ldflags: "-X github.com/online-net/c14-cli/pkg/version.GITCOMMIT=homebrew"),
+                          "-o", bin/"c14",
+                          "./cmd/c14/"
   end
 
   test do
