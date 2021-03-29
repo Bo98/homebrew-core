@@ -20,7 +20,7 @@ class Sampler < Formula
   end
 
   def install
-    system "go", "build", "-o", bin/"sampler"
+    system "go", "build", *std_go_args
   end
 
   test do
