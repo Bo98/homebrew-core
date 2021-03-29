@@ -16,7 +16,7 @@ class Run < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-trimpath", "-ldflags", "-w -s", "-o", bin/name
+    system "go", "build", *std_go_args(ldflags: "-w -s"), "-o", bin/name
   end
 
   test do
