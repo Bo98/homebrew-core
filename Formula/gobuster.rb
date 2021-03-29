@@ -17,7 +17,7 @@ class Gobuster < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-ldflags", "-s -w", "-trimpath", "-o", bin/"gobuster"
+    system "go", "build", *std_go_args(ldflags: "-s -w")
     prefix.install_metafiles
   end
 
