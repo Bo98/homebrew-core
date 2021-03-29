@@ -15,7 +15,7 @@ class Govc < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-o", "#{bin}/#{name}", "./#{name}"
+    system "go", "build", *std_go_args, "-o", "#{bin}/#{name}", "./#{name}"
   end
 
   test do
