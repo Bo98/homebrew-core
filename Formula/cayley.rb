@@ -34,7 +34,7 @@ class Cayley < Formula
       ]
 
       # Build the binary
-      system "go", "build", "-o", bin/"cayley", "-ldflags", ldflags.join(" "), "./cmd/cayley"
+      system "go", "build", *std_go_args(ldflags: ldflags.join(" ")), "./cmd/cayley"
 
       inreplace "cayley_example.yml", "./cayley.db", var/"cayley/cayley.db"
       etc.install "cayley_example.yml" => "cayley.yml"
