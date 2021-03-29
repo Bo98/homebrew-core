@@ -28,7 +28,7 @@ class Gdrive < Formula
     dir = buildpath/"src/github.com/prasmussen/gdrive"
     dir.install buildpath.children
     dir.cd do
-      system "go", "build", "-o", bin/"gdrive", "."
+      system "go", "build", *std_go_args, "."
       doc.install "README.md"
     end
   end
