@@ -18,14 +18,10 @@ class Stolon < Formula
   depends_on "postgresql"
 
   def install
-    system "go", "build", "-ldflags", "-s -w -X github.com/sorintlab/stolon/cmd.Version=#{version}",
-                          "-trimpath", "-o", bin/"stolonctl", "./cmd/stolonctl"
-    system "go", "build", "-ldflags", "-s -w -X github.com/sorintlab/stolon/cmd.Version=#{version}",
-                          "-trimpath", "-o", bin/"stolon-keeper", "./cmd/keeper"
-    system "go", "build", "-ldflags", "-s -w -X github.com/sorintlab/stolon/cmd.Version=#{version}",
-                          "-trimpath", "-o", bin/"stolon-sentinel", "./cmd/sentinel"
-    system "go", "build", "-ldflags", "-s -w -X github.com/sorintlab/stolon/cmd.Version=#{version}",
-                          "-trimpath", "-o", bin/"stolon-proxy", "./cmd/proxy"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X github.com/sorintlab/stolon/cmd.Version=#{version}"), "-o", bin/"stolonctl", "./cmd/stolonctl"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X github.com/sorintlab/stolon/cmd.Version=#{version}"), "-o", bin/"stolon-keeper", "./cmd/keeper"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X github.com/sorintlab/stolon/cmd.Version=#{version}"), "-o", bin/"stolon-sentinel", "./cmd/sentinel"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X github.com/sorintlab/stolon/cmd.Version=#{version}"), "-o", bin/"stolon-proxy", "./cmd/proxy"
     prefix.install_metafiles
   end
 
