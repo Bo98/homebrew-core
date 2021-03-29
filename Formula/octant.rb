@@ -43,7 +43,7 @@ class Octant < Formula
                  "-X \"main.gitCommit=#{Utils.git_head}\"",
                  "-X \"main.buildTime=#{build_time}\""]
 
-      system "go", "build", "-o", bin/"octant", "-ldflags", ldflags.join(" "),
+      system "go", "build", *std_go_args(ldflags: ldflags.join(" ")),
               "-v", "./cmd/octant"
     end
   end
