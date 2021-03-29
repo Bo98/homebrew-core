@@ -17,7 +17,7 @@ class Archiver < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-trimpath", "-o", bin/"arc", "cmd/arc/main.go"
+    system "go", "build", *std_go_args, "-o", bin/"arc", "cmd/arc/main.go"
   end
 
   test do
