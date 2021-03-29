@@ -26,8 +26,7 @@ class Earthly < Formula
     tags = "dfrunmount dfrunsecurity dfsecrets dfssh dfrunnetwork"
     system "go", "build",
         "-tags", tags,
-        "-ldflags", ldflags,
-        *std_go_args,
+        *std_go_args(ldflags: ldflags),
         "./cmd/earthly/main.go"
 
     bash_output = Utils.safe_popen_read("#{bin}/earthly", "bootstrap", "--source", "bash")
