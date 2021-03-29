@@ -15,8 +15,7 @@ class Pdfcpu < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-trimpath", "-o", bin/"pdfcpu", "-ldflags",
-           "-X github.com/pdfcpu/pdfcpu/pkg/pdfcpu.VersionStr=#{version}", "./cmd/pdfcpu"
+    system "go", "build", *std_go_args(ldflags: "-X github.com/pdfcpu/pdfcpu/pkg/pdfcpu.VersionStr=#{version}"), "./cmd/pdfcpu"
   end
 
   test do
