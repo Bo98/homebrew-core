@@ -22,7 +22,7 @@ class Termshark < Formula
     ln_sf buildpath, buildpath/"termshark"
 
     cd "termshark" do
-      system "go", "build", "-o", bin/"termshark",
+      system "go", "build", *std_go_args,
              "cmd/termshark/termshark.go"
     end
   end
