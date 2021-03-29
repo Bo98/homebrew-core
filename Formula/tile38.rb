@@ -27,8 +27,9 @@ class Tile38 < Formula
       -X github.com/tidwall/tile38/core.GitSHA=#{Utils.git_short_head}
     ]
 
-    system "go", "build", "-o", bin/"tile38-server", "-ldflags", ldflags.join(" "), "./cmd/tile38-server"
-    system "go", "build", "-o", bin/"tile38-cli", "-ldflags", ldflags.join(" "), "./cmd/tile38-cli"
+    system "go", "build", *std_go_args(ldflags: ldflags.join(" ")), "-o", bin/"tile38-server",
+"./cmd/tile38-server"
+    system "go", "build", *std_go_args(ldflags: ldflags.join(" ")), "-o", bin/"tile38-cli", "./cmd/tile38-cli"
   end
 
   def post_install
