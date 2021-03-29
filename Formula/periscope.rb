@@ -16,9 +16,7 @@ class Periscope < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-ldflags",
-      "-s -w -X main.version=#{version} -X main.commit=#{Utils.git_head}",
-      "-trimpath", "./cmd/psc"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X main.version=#{version} -X main.commit=#{Utils.git_head}"), "./cmd/psc"
 
     bin.install "psc"
 
