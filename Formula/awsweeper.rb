@@ -21,7 +21,7 @@ class Awsweeper < Formula
       -X github.com/jckuester/awsweeper/internal.date=#{Date.today}
     ]
 
-    system "go", "build", *std_go_args, "-ldflags", ldflags.join(" ")
+    system "go", "build", *std_go_args(ldflags: ldflags.join(" "))
   end
 
   test do
