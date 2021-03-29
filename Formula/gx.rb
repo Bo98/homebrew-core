@@ -17,7 +17,7 @@ class Gx < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-o", bin/"gx"
+    system "go", "build", *std_go_args
   end
 
   test do
