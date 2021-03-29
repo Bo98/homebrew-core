@@ -29,7 +29,7 @@ class Docker < Formula
                  "-X github.com/docker/cli/cli/version.GitCommit=#{commit}",
                  "-X github.com/docker/cli/cli/version.Version=#{version}",
                  "-X \"github.com/docker/cli/cli/version.PlatformName=Docker Engine - Community\""]
-      system "go", "build", "-o", bin/"docker", "-ldflags", ldflags.join(" "),
+      system "go", "build", *std_go_args(ldflags: ldflags.join(" ")),
              "github.com/docker/cli/cmd/docker"
 
       Pathname.glob("man/*.[1-8].md") do |md|
