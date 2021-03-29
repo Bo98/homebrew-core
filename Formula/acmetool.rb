@@ -37,7 +37,7 @@ class Acmetool < Formula
       -X github.com/hlandau/buildinfo.RawBuildInfo=#{buildinfo}
     ].join(" ")
 
-    system "go", "build", "-ldflags", ldflags, "-trimpath", "-o", bin/"acmetool", buildpath/"cmd/acmetool"
+    system "go", "build", *std_go_args(ldflags: ldflags), buildpath/"cmd/acmetool"
 
     (man8/"acmetool.8").write Utils.safe_popen_read(bin/"acmetool", "--help-man")
 
