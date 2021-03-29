@@ -180,7 +180,7 @@ class GxGo < Formula
     mkdir_p "src/github.com/whyrusleeping"
     ln_s buildpath, "src/github.com/whyrusleeping/gx-go"
     Language::Go.stage_deps resources, buildpath/"src"
-    system "go", "build", "-o", bin/"gx-go"
+    system "go", "build", *std_go_args
   end
 
   test do
