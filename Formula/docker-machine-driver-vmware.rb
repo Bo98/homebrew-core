@@ -26,8 +26,7 @@ class DockerMachineDriverVmware < Formula
     dir.install buildpath.children
 
     cd dir do
-      system "go", "build", "-o", "#{bin}/docker-machine-driver-vmware",
-            "-ldflags", "-X main.version=#{version}"
+      system "go", "build", *std_go_args(ldflags: "-X main.version=#{version}"), "-o", "#{bin}/docker-machine-driver-vmware"
       prefix.install_metafiles
     end
   end
