@@ -22,7 +22,7 @@ class KymaCli < Formula
       -X github.com/kyma-project/cli/cmd/kyma/upgrade.DefaultKymaVersion=#{version}
     ].join(" ")
 
-    system "go", "build", *std_go_args, "-o", bin/"kyma", "-ldflags", ldflags, "./cmd"
+    system "go", "build", *std_go_args(ldflags: ldflags), "-o", bin/"kyma", "./cmd"
   end
 
   test do
