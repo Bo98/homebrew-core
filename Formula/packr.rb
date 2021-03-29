@@ -62,7 +62,7 @@ class Packr < Formula
     system "go", "mod", "edit", "-require=github.com/gobuffalo/packr/v2@v#{version}"
     system "go", "mod", "download"
     system bin/"packr2"
-    system "go", "build"
+    system "go", "build", *std_go_args
     system bin/"packr2", "clean"
 
     assert_equal File.read("templates/admin/index.html"), shell_output("./example")
