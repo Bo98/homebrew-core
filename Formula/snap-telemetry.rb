@@ -33,14 +33,14 @@ class SnapTelemetry < Formula
 
     cd snapteld do
       system "glide", "install"
-      system "go", "build", "-o", "snapteld", "-ldflags", "-w -X main.gitversion=#{version}"
+      system "go", "build", *std_go_args(ldflags: "-w -X main.gitversion=#{version}"), "-o", "snapteld"
       sbin.install "snapteld"
       prefix.install_metafiles
     end
 
     snaptel = buildpath/"src/github.com/intelsdi-x/snap/cmd/snaptel"
     cd snaptel do
-      system "go", "build", "-o", "snaptel", "-ldflags", "-w -X main.gitversion=#{version}"
+      system "go", "build", *std_go_args(ldflags: "-w -X main.gitversion=#{version}"), "-o", "snaptel"
       bin.install "snaptel"
     end
   end
