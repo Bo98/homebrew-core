@@ -22,7 +22,7 @@ class Kubeaudit < Formula
       -X github.com/Shopify/kubeaudit/cmd.BuildDate=#{Date.today}
     ]
 
-    system "go", "build", "-ldflags", ldflags.join(" "), *std_go_args, "./cmd"
+    system "go", "build", *std_go_args(ldflags: ldflags.join(" ")), "./cmd"
   end
 
   test do
