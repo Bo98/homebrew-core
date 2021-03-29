@@ -16,7 +16,7 @@ class Forcecli < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-trimpath", "-o", bin/"force"
+    system "go", "build", *std_go_args, "-o", bin/"force"
   end
 
   test do
