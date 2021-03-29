@@ -27,7 +27,7 @@ class Gcsfuse < Formula
     # Build the build_gcsfuse tool. Ensure that it doesn't pick up any
     # libraries from the user's GOPATH; it should have no dependencies.
     ENV.delete("GOPATH")
-    system "go", "build", "./tools/build_gcsfuse"
+    system "go", "build", *std_go_args, "./tools/build_gcsfuse"
 
     # Use that tool to build gcsfuse itself.
     gcsfuse_version = build.head? ? Utils.git_short_head : version
