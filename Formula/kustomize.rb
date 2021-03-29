@@ -32,7 +32,7 @@ class Kustomize < Formula
         -X sigs.k8s.io/kustomize/api/provenance.gitCommit=#{commit}
         -X sigs.k8s.io/kustomize/api/provenance.buildDate=#{Time.now.iso8601}
       ]
-      system "go", "build", "-ldflags", ldflags.join(" "), "-o", bin/"kustomize"
+      system "go", "build", *std_go_args(ldflags: ldflags.join(" "))
     end
 
     output = Utils.safe_popen_read("#{bin}/kustomize", "completion", "bash")
