@@ -20,11 +20,9 @@ class K3d < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build",
-           "-mod", "vendor",
-           "-ldflags", "-s -w -X github.com/rancher/k3d/v#{version.major}/version.Version=v#{version}"\
-           " -X github.com/rancher/k3d/v#{version.major}/version.K3sVersion=latest",
-           "-trimpath", "-o", bin/"k3d"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X github.com/rancher/k3d/v#{version.major}/version.Version=v#{version}"\
+           " -X github.com/rancher/k3d/v#{version.major}/version.K3sVersion=latest"),
+           "-mod", "vendor"
 
     # Install bash completion
     output = Utils.safe_popen_read("#{bin}/k3d", "completion", "bash")
