@@ -21,7 +21,7 @@ class Hivemind < Formula
     ENV["GOPATH"] = buildpath
     ENV["GO111MODULE"] = "auto"
     (buildpath/"src/github.com/DarthSim/hivemind/").install Dir["*"]
-    system "go", "build", "-o", "#{bin}/hivemind", "-v", "github.com/DarthSim/hivemind/"
+    system "go", "build", *std_go_args, "-o", "#{bin}/hivemind", "-v", "github.com/DarthSim/hivemind/"
   end
 
   test do
