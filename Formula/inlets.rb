@@ -29,7 +29,7 @@ class Inlets < Formula
       -X main.GitCommit=#{Utils.git_head}
       -X main.Version=#{version}
     ]
-    system "go", "build", *std_go_args, "-ldflags", ldflags.join(" "), "-a", "-installsuffix", "cgo"
+    system "go", "build", *std_go_args(ldflags: ldflags.join(" ")), "-a", "-installsuffix", "cgo"
   end
 
   def cleanup(name, pid)
