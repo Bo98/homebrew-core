@@ -16,7 +16,7 @@ class Killswitch < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-mod=readonly", "-ldflags", "-s -w -X main.version=#{version}",
+    system "go", "build", *std_go_args(ldflags: "-s -w -X main.version=#{version}"), "-mod=readonly",
            "-o", "#{bin}/killswitch", "cmd/killswitch/main.go"
   end
 
