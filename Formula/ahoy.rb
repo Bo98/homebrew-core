@@ -22,7 +22,7 @@ class Ahoy < Formula
     bin_path = buildpath/"src/github.com/ahoy-cli/ahoy"
     bin_path.install Dir["*"]
     cd bin_path do
-      system "go", "build", "-o", bin/"ahoy", "-ldflags", "-X main.version=#{version}", "."
+      system "go", "build", *std_go_args(ldflags: "-X main.version=#{version}"), "."
     end
   end
 
