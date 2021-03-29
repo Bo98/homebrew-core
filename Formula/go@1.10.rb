@@ -67,8 +67,7 @@ class GoAT110 < Formula
     ENV["GOPATH"] = buildpath/"go"
     (buildpath/"go/src/golang.org/x/tools").install resource("gotools")
     cd "go/src/golang.org/x/tools/cmd/godoc/" do
-      system "go", "build"
-      (libexec/"bin").install "godoc"
+      system "go", "build", *std_go_args, "-o", libexec/"bin/godoc"
     end
     bin.install_symlink libexec/"bin/godoc"
   end
