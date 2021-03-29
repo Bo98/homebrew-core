@@ -24,7 +24,7 @@ class DockerSwarm < Formula
     ENV["GOPATH"] = buildpath
     (buildpath/"src/github.com/docker/swarm").install buildpath.children
     cd "src/github.com/docker/swarm" do
-      system "go", "build", "-o", bin/"docker-swarm"
+      system "go", "build", *std_go_args
       prefix.install_metafiles
     end
   end
