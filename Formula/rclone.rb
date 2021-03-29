@@ -20,8 +20,7 @@ class Rclone < Formula
     on_macos do
       args += ["-tags", "brew"]
     end
-    system "go", "build",
-      "-ldflags", "-s -X github.com/rclone/rclone/fs.Version=v#{version}",
+    system "go", "build", *std_go_args(ldflags: "-s -X github.com/rclone/rclone/fs.Version=v#{version}"),
       *args
     man1.install "rclone.1"
     system bin/"rclone", "genautocomplete", "bash", "rclone.bash"
