@@ -27,7 +27,7 @@ class GitlabRunner < Formula
 
     cd dir do
       proj = "gitlab.com/gitlab-org/gitlab-runner"
-      system "go", "build", "-ldflags", <<~EOS
+      system "go", "build", *std_go_args(ldflags: <<~EOS)
         -X #{proj}/common.NAME=gitlab-runner
         -X #{proj}/common.VERSION=#{version}
         -X #{proj}/common.REVISION=#{Utils.git_short_head(length: 8)}
