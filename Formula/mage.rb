@@ -24,7 +24,7 @@ class Mage < Formula
       -X github.com/magefile/mage/mage.commitHash=#{Utils.git_short_head}
       -X github.com/magefile/mage/mage.gitTag=#{version}
     ]
-    system "go", "build", *std_go_args, "-ldflags", ldflags.join(" ")
+    system "go", "build", *std_go_args(ldflags: ldflags.join(" "))
   end
 
   test do
