@@ -16,7 +16,7 @@ class Noti < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-mod=vendor", "-o", "#{bin}/noti", "cmd/noti/main.go"
+    system "go", "build", *std_go_args, "-mod=vendor", "-o", "#{bin}/noti", "cmd/noti/main.go"
     man1.install "docs/man/noti.1"
     man5.install "docs/man/noti.yaml.5"
   end
