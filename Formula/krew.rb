@@ -29,8 +29,7 @@ class Krew < Formula
       -X sigs.k8s.io/krew/internal/version.gitTag=v#{version}
     ]
 
-    system "go", "build", "-o", "build", "-tags", "netgo",
-      "-ldflags", ldflags.join(" "), "./cmd/krew"
+    system "go", "build", *std_go_args(ldflags: ldflags.join(" ")), "-o", "build", "-tags", "netgo", "./cmd/krew"
     # install as kubectl-krew for kubectl to find as plugin
     bin.install "build/krew" => "kubectl-krew"
   end
