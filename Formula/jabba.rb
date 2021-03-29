@@ -26,7 +26,7 @@ class Jabba < Formula
     cd dir do
       ldflags = "-X main.version=#{version}"
       system "glide", "install"
-      system "go", "build", "-ldflags", ldflags, "-o", bin/"jabba"
+      system "go", "build", *std_go_args(ldflags: ldflags)
       prefix.install_metafiles
     end
   end
