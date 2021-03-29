@@ -19,7 +19,7 @@ class Uru < Formula
     ENV["GOPATH"] = buildpath
     ENV["GO111MODULE"] = "auto"
     (buildpath/"src/bitbucket.org/jonforums/uru").install Dir["*"]
-    system "go", "build", "-ldflags", "-s", "bitbucket.org/jonforums/uru/cmd/uru"
+    system "go", "build", *std_go_args(ldflags: "-s"), "bitbucket.org/jonforums/uru/cmd/uru"
     bin.install "uru" => "uru_rt"
   end
 
