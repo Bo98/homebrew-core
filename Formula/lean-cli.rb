@@ -18,8 +18,7 @@ class LeanCli < Formula
   def install
     build_from = build.head? ? "homebrew-head" : "homebrew"
     system "go", "build",
-            "-ldflags", "-s -w -X main.pkgType=#{build_from}",
-            *std_go_args,
+            *std_go_args(ldflags: "-s -w -X main.pkgType=#{build_from}"),
             "-o", bin/"lean",
             "./lean"
 
