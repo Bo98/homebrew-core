@@ -23,11 +23,9 @@ class V2ray < Formula
   def install
     ldflags = "-s -w -buildid="
     execpath = libexec/name
-    system "go", "build", *std_go_args, "-o", execpath,
-                 "-ldflags", ldflags,
+    system "go", "build", *std_go_args(ldflags: ldflags), "-o", execpath,
                  "./main"
-    system "go", "build", *std_go_args,
-                 "-ldflags", ldflags,
+    system "go", "build", *std_go_args(ldflags: ldflags),
                  "-tags", "confonly",
                  "-o", bin/"v2ctl",
                  "./infra/control/main"
