@@ -16,8 +16,7 @@ class Ghz < Formula
 
   def install
     system "go", "build",
-      "-ldflags", "-s -w -X main.version=#{version}",
-      *std_go_args,
+      *std_go_args(ldflags: "-s -w -X main.version=#{version}"),
       "cmd/ghz/main.go"
     prefix.install_metafiles
   end
