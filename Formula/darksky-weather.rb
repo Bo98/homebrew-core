@@ -20,7 +20,7 @@ class DarkskyWeather < Formula
     ldflags = ["-s -w",
                "-X #{project}/version.GITCOMMIT=homebrew",
                "-X #{project}/version.VERSION=v#{version}"]
-    system "go", "build", *std_go_args, "-ldflags", ldflags.join(" ")
+    system "go", "build", *std_go_args(ldflags: ldflags.join(" "))
     mv bin/"darksky-weather", bin/"weather"
   end
 
