@@ -42,7 +42,7 @@ class Sift < Formula
     (buildpath/"src/github.com/svent/sift").install buildpath.children
     Language::Go.stage_deps resources, buildpath/"src"
     cd "src/github.com/svent/sift" do
-      system "go", "build", "-o", bin/"sift"
+      system "go", "build", *std_go_args
       prefix.install_metafiles
     end
   end
