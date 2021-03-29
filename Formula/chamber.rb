@@ -22,7 +22,7 @@ class Chamber < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-ldflags", "-s -w -X main.Version=v#{version}", "-trimpath", "-o", bin/"chamber"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X main.Version=v#{version}")
     prefix.install_metafiles
   end
 
