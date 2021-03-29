@@ -25,7 +25,7 @@ class Convox < Formula
       -X main.version=#{version}
     ].join(" ")
 
-    system "go", "build", *std_go_args, "-mod=vendor", "-ldflags", ldflags, "./cmd/convox"
+    system "go", "build", *std_go_args(ldflags: ldflags), "-mod=vendor", "./cmd/convox"
   end
 
   test do
