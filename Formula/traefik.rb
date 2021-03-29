@@ -18,9 +18,7 @@ class Traefik < Formula
 
   def install
     system "go", "generate"
-    system "go", "build",
-      "-ldflags", "-s -w -X github.com/traefik/traefik/v#{version.major}/pkg/version.Version=#{version}",
-      "-trimpath", "-o", bin/"traefik", "./cmd/traefik"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X github.com/traefik/traefik/v#{version.major}/pkg/version.Version=#{version}"), "./cmd/traefik"
   end
 
   plist_options manual: "traefik"
