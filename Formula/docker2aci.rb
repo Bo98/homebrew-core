@@ -22,8 +22,7 @@ class Docker2aci < Formula
     ENV["GOPATH"] = buildpath
     (buildpath/"src/github.com/appc").mkpath
     ln_s buildpath, buildpath/"src/github.com/appc/docker2aci"
-    system "go", "build", "-o", bin/"docker2aci", "-ldflags",
-      "-X github.com/appc/docker2aci/lib.Version=#{version}",
+    system "go", "build", *std_go_args(ldflags: "-X github.com/appc/docker2aci/lib.Version=#{version}"),
       "github.com/appc/docker2aci"
   end
 
