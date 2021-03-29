@@ -19,7 +19,7 @@ class CfTool < Formula
     ENV["GO111MODULE"] = "auto"
     (buildpath/"src/github.com/xalanq/cf-tool").install buildpath.children
     cd "src/github.com/xalanq/cf-tool" do
-      system "go", "build", "-o", "cf", "-trimpath", "-ldflags", "-s -w", "cf.go"
+      system "go", "build", *std_go_args(ldflags: "-s -w"), "-o", "cf", "cf.go"
       bin.install "cf"
       prefix.install_metafiles
     end
