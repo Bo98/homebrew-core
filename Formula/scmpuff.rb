@@ -16,7 +16,7 @@ class Scmpuff < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", *std_go_args, "-ldflags", "-s -v -X main.VERSION=#{version}"
+    system "go", "build", *std_go_args(ldflags: "-s -v -X main.VERSION=#{version}")
   end
 
   test do
