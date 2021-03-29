@@ -25,7 +25,7 @@ class ApacheBrooklynCli < Formula
     ENV["GO111MODULE"] = "auto"
     (buildpath/"src/github.com/apache/brooklyn-client").install "cli"
     cd "src/github.com/apache/brooklyn-client/cli" do
-      system "go", "build", "-o", bin/"br", ".../br"
+      system "go", "build", *std_go_args, "-o", bin/"br", ".../br"
       prefix.install_metafiles
     end
   end
