@@ -20,8 +20,7 @@ class Shfmt < Formula
     ENV["CGO_ENABLED"] = "0"
     (buildpath/"src/mvdan.cc").mkpath
     ln_sf buildpath, buildpath/"src/mvdan.cc/sh"
-    system "go", "build", "-a", "-tags", "production brew", "-ldflags",
-                          "-w -s -extldflags '-static' -X main.version=#{version}",
+    system "go", "build", *std_go_args(ldflags: "-w -s -extldflags '-static' -X main.version=#{version}"), "-a", "-tags", "production brew",
                           "-o", "#{bin}/shfmt", "./cmd/shfmt"
     man1.mkpath
     system "scdoc < ./cmd/shfmt/shfmt.1.scd > #{man1}/shfmt.1"
