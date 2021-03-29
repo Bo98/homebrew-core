@@ -24,7 +24,7 @@ class Emp < Formula
     (buildpath/"src/github.com/remind101/").mkpath
     ln_s buildpath, buildpath/"src/github.com/remind101/empire"
 
-    system "go", "build", "-o", bin/"emp", "./src/github.com/remind101/empire/cmd/emp"
+    system "go", "build", *std_go_args, "./src/github.com/remind101/empire/cmd/emp"
   end
 
   test do
