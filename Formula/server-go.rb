@@ -21,8 +21,7 @@ class ServerGo < Formula
 
   def install
     (etc/"server-go").mkpath
-    system "go", "build", "-mod=vendor", "-ldflags",
-      "-s -w -X main.version=#{version} -X main.commit=#{Utils.git_head} -X main.builtBy=homebrew", *std_go_args
+    system "go", "build", "-mod=vendor", *std_go_args(ldflags: "-s -w -X main.version=#{version} -X main.commit=#{Utils.git_head} -X main.builtBy=homebrew")
     etc.install "server-go.yaml" => "server-go/server-go.yaml"
   end
 
