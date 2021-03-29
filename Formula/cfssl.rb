@@ -21,9 +21,9 @@ class Cfssl < Formula
     ldflags = ["-s", "-w",
                "-X github.com/cloudflare/cfssl/cli/version.version=#{version}"]
 
-    system "go", "build", "-o", "#{bin}/cfssl", "-ldflags", ldflags, "cmd/cfssl/cfssl.go"
-    system "go", "build", "-o", "#{bin}/cfssljson", "-ldflags", ldflags, "cmd/cfssljson/cfssljson.go"
-    system "go", "build", "-o", "#{bin}/cfsslmkbundle", "cmd/mkbundle/mkbundle.go"
+    system "go", "build", *std_go_args(ldflags: ldflags), "-o", "#{bin}/cfssl", "cmd/cfssl/cfssl.go"
+    system "go", "build", *std_go_args(ldflags: ldflags), "-o", "#{bin}/cfssljson", "cmd/cfssljson/cfssljson.go"
+    system "go", "build", *std_go_args, "-o", "#{bin}/cfsslmkbundle", "cmd/mkbundle/mkbundle.go"
   end
 
   def caveats
