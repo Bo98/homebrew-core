@@ -16,7 +16,7 @@ class Smimesign < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", *std_go_args, "-ldflags", "-X main.versionString=#{version}"
+    system "go", "build", *std_go_args(ldflags: "-X main.versionString=#{version}")
   end
 
   test do
