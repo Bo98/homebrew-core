@@ -19,7 +19,7 @@ class Ucloud < Formula
     dir = buildpath/"src/github.com/ucloud/ucloud-cli"
     dir.install buildpath.children
     cd dir do
-      system "go", "build", "-mod=vendor", "-o", bin/"ucloud"
+      system "go", "build", *std_go_args, "-mod=vendor"
       prefix.install_metafiles
     end
   end
