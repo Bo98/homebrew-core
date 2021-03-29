@@ -26,7 +26,7 @@ class FleetCli < Formula
       -X github.com/rancher/fleet/pkg/version.Version=#{version}
       -X github.com/rancher/fleet/pkg/version.GitCommit=#{Utils.git_short_head}
     ]
-    system "go", "build", *std_go_args, "-ldflags", ldflags.join(" "), "-o", bin/"fleet"
+    system "go", "build", *std_go_args(ldflags: ldflags.join(" ")), "-o", bin/"fleet"
   end
 
   test do
