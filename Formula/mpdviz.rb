@@ -44,7 +44,7 @@ class Mpdviz < Formula
     ENV["GO111MODULE"] = "auto"
     Language::Go.stage_deps resources, buildpath/"src"
 
-    system "go", "build", "-o", "mpdviz"
+    system "go", "build", *std_go_args, "-o", "mpdviz"
     bin.install "mpdviz"
   end
 end
