@@ -28,7 +28,7 @@ class Devspace < Formula
       -X main.commitHash=#{Utils.git_head}
       -X main.version=#{version}
     ]
-    system "go", "build", "-ldflags", ldflags.join(" "), *std_go_args
+    system "go", "build", *std_go_args(ldflags: ldflags.join(" "))
   end
 
   test do
