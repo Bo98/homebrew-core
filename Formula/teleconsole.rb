@@ -68,7 +68,7 @@ class Teleconsole < Formula
     mkdir_p buildpath/"src/github.com/gravitational"
     ln_s buildpath, buildpath/"src/github.com/gravitational/teleconsole"
     Language::Go.stage_deps resources, buildpath/"src"
-    system "go", "build", "-o", bin/"teleconsole"
+    system "go", "build", *std_go_args
   end
 
   test do
