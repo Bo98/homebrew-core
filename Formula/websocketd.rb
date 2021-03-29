@@ -15,7 +15,7 @@ class Websocketd < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-ldflags", "-X main.version=#{version}", *std_go_args
+    system "go", "build", *std_go_args(ldflags: "-X main.version=#{version}")
     man1.install "release/websocketd.man" => "websocketd.1"
   end
 
