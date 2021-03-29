@@ -21,8 +21,7 @@ class RancherCompose < Formula
   def install
     ENV["GOPATH"] = buildpath
     (buildpath/"src/github.com/rancher/rancher-compose").install Dir["*"]
-    system "go", "build", "-ldflags",
-           "-w -X github.com/rancher/rancher-compose/version.VERSION=#{version}",
+    system "go", "build", *std_go_args(ldflags: "-w -X github.com/rancher/rancher-compose/version.VERSION=#{version}"),
            "-o", "#{bin}/rancher-compose",
            "-v", "github.com/rancher/rancher-compose"
     prefix.install_metafiles "src/github.com/rancher/rancher-compose"
