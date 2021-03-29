@@ -16,7 +16,7 @@ class Vale < Formula
 
   def install
     ldflags = "-X main.version=#{version} -s -w"
-    system "go", "build", *std_go_args, "-ldflags=#{ldflags}", "./cmd/vale"
+    system "go", "build", *std_go_args(ldflags: "=#{ldflags}"), "./cmd/vale"
   end
 
   test do
