@@ -72,7 +72,7 @@ class Cosi < Formula
 
     Language::Go.stage_deps resources, buildpath/"src"
 
-    system "go", "build", "-o", "cosi"
+    system "go", "build", *std_go_args, "-o", "cosi"
     prefix.install "dedis_group.toml"
     bin.install "cosi"
   end
