@@ -16,8 +16,7 @@ class Lazydocker < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-mod=vendor", "-o", bin/"lazydocker",
-      "-ldflags", "-X main.version=#{version} -X main.buildSource=homebrew"
+    system "go", "build", *std_go_args(ldflags: "-X main.version=#{version} -X main.buildSource=homebrew"), "-mod=vendor"
   end
 
   test do
