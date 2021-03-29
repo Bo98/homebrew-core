@@ -38,8 +38,8 @@ class Influxdb < Formula
     ENV.prepend_path "PATH", buildpath/"bootstrap"
 
     ldflags = "-s -w -X main.version=#{version}"
-    system "go", "build", *std_go_args, "-ldflags", ldflags, "-o", bin/"influx", "./cmd/influx"
-    system "go", "build", *std_go_args, "-ldflags", ldflags, "-o", bin/"influxd", "./cmd/influxd"
+    system "go", "build", *std_go_args(ldflags: ldflags), "-o", bin/"influx", "./cmd/influx"
+    system "go", "build", *std_go_args(ldflags: ldflags), "-o", bin/"influxd", "./cmd/influxd"
   end
 
   test do
