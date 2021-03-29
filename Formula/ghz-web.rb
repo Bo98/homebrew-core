@@ -18,8 +18,7 @@ class GhzWeb < Formula
   def install
     ENV["CGO_ENABLED"] = "1"
     system "go", "build",
-      "-ldflags", "-s -w -X main.version=#{version}",
-      *std_go_args,
+      *std_go_args(ldflags: "-s -w -X main.version=#{version}"),
       "cmd/ghz-web/main.go"
     prefix.install_metafiles
   end
