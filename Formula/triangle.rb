@@ -16,7 +16,7 @@ class Triangle < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-mod=vendor", "-o", "#{bin}/triangle", "./cmd/triangle"
+    system "go", "build", *std_go_args, "-mod=vendor", "-o", "#{bin}/triangle", "./cmd/triangle"
     prefix.install_metafiles
   end
 
