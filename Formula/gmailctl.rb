@@ -22,7 +22,7 @@ class Gmailctl < Formula
   end
 
   def install
-    system "go", "build", "-ldflags", "-s -w -X main.version=#{version}", *std_go_args, "cmd/gmailctl/main.go"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X main.version=#{version}"), "cmd/gmailctl/main.go"
     pkgshare.install ["default-config.jsonnet", "gmailctl.libsonnet"]
   end
 
