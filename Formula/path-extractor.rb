@@ -29,7 +29,7 @@ class PathExtractor < Formula
     (buildpath/"src/github.com/edi9999").mkpath
     ln_sf buildpath, buildpath/"src/github.com/edi9999/path-extractor"
 
-    system "go", "build", "-o", bin/"path-extractor", "path-extractor/pe.go"
+    system "go", "build", *std_go_args, "path-extractor/pe.go"
   end
 
   test do
