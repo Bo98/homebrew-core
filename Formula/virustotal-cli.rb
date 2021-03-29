@@ -15,8 +15,7 @@ class VirustotalCli < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-ldflags",
-            "-X cmd.Version=#{version}",
+    system "go", "build", *std_go_args(ldflags: "-X cmd.Version=#{version}"),
             "-o", bin/"vt", "./vt/main.go"
 
     output = Utils.safe_popen_read("#{bin}/vt", "completion", "bash")
