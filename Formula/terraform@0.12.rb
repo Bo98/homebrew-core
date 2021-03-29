@@ -21,8 +21,7 @@ class TerraformAT012 < Formula
     ENV.delete "AWS_SECRET_KEY"
 
     ENV["CGO_ENABLED"] = "0"
-    system "go", "build", *std_go_args,
-      "-ldflags", "-s -w", "-mod=vendor", "-o", bin/"terraform"
+    system "go", "build", *std_go_args(ldflags: "-s -w"), "-mod=vendor", "-o", bin/"terraform"
   end
 
   test do
