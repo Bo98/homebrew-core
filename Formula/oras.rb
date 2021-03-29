@@ -20,8 +20,7 @@ class Oras < Formula
       -X github.com/deislabs/oras/internal/version.Version=#{version}
       -X github.com/deislabs/oras/internal/version.BuildMetadata=Homebrew
     ]
-    system "go", "build", *std_go_args,
-                          "-ldflags", ldflags.join(" "),
+    system "go", "build", *std_go_args(ldflags: ldflags.join(" ")),
                           "./cmd/oras"
   end
 
