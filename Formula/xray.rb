@@ -28,8 +28,7 @@ class Xray < Formula
   def install
     ldflags = "-s -w -buildid="
     execpath = libexec/name
-    system "go", "build", *std_go_args, "-o", execpath,
-                 "-ldflags", ldflags,
+    system "go", "build", *std_go_args(ldflags: ldflags), "-o", execpath,
                  "./main"
     (bin/"xray").write_env_script execpath,
       XRAY_LOCATION_ASSET: "${XRAY_LOCATION_ASSET:-#{pkgshare}}"
