@@ -24,7 +24,7 @@ class Bitrise < Formula
     cd bitrise_go_path do
       prefix.install_metafiles
 
-      system "go", "build", "-o", bin/"bitrise"
+      system "go", "build", *std_go_args
     end
   end
 
