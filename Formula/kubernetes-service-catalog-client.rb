@@ -22,7 +22,7 @@ class KubernetesServiceCatalogClient < Formula
       -s -w
       -X github.com/kubernetes-sigs/service-catalog/pkg.VERSION=v#{version}
     ]
-    system "go", "build", "-ldflags", ldflags.join(" "), "-o",
+    system "go", "build", *std_go_args(ldflags: ldflags.join(" ")), "-o",
             bin/"svcat", "./cmd/svcat"
     prefix.install_metafiles
   end
