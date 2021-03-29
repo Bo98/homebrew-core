@@ -23,7 +23,7 @@ class Exercism < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-ldflags", "-s -w", "-trimpath", "-o", bin/"exercism", "exercism/main.go"
+    system "go", "build", *std_go_args(ldflags: "-s -w"), "exercism/main.go"
     prefix.install_metafiles
 
     bash_completion.install "shell/exercism_completion.bash"
