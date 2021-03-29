@@ -26,7 +26,7 @@ class Ksync < Formula
       -X #{project}/pkg/ksync.VersionString=Homebrew
       -X #{project}/pkg/ksync.GoVersion=go#{Formula["go"].version}
     ]
-    system "go", "build", "-ldflags", ldflags.join(" "), *std_go_args, "#{project}/cmd/ksync"
+    system "go", "build", *std_go_args(ldflags: ldflags.join(" ")), "#{project}/cmd/ksync"
   end
 
   test do
