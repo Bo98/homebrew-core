@@ -15,9 +15,7 @@ class Velero < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", *std_go_args, "-installsuffix", "static",
-                  "-ldflags",
-                  "-s -w -X github.com/vmware-tanzu/velero/pkg/buildinfo.Version=v#{version}",
+    system "go", "build", *std_go_args(ldflags: "-s -w -X github.com/vmware-tanzu/velero/pkg/buildinfo.Version=v#{version}"), "-installsuffix", "static",
                   "./cmd/velero"
 
     # Install bash completion
