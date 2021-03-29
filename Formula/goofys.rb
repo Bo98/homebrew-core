@@ -33,7 +33,7 @@ class Goofys < Formula
     ENV["GOPATH"] = gopath
 
     cd gopath/"src/github.com/kahing/goofys" do
-      system "go", "build", "-o", "goofys", "-ldflags", "-X main.Version=#{Utils.git_head}"
+      system "go", "build", *std_go_args(ldflags: "-X main.Version=#{Utils.git_head}"), "-o", "goofys"
       bin.install "goofys"
       prefix.install_metafiles
     end
