@@ -24,7 +24,7 @@ class SshVault < Formula
     cd "src/github.com/ssh-vault/ssh-vault" do
       system "dep", "ensure", "-vendor-only"
       ldflags = "-s -w -X main.version=#{version}"
-      system "go", "build", "-ldflags", ldflags, "-o", "#{bin}/ssh-vault", "cmd/ssh-vault/main.go"
+      system "go", "build", *std_go_args(ldflags: ldflags), "-o", "#{bin}/ssh-vault", "cmd/ssh-vault/main.go"
       prefix.install_metafiles
     end
   end
