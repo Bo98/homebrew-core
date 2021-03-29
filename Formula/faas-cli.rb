@@ -30,7 +30,7 @@ class FaasCli < Formula
       -X #{project}/version.GitCommit=#{Utils.git_head}
       -X #{project}/version.Version=#{version}
     ]
-    system "go", "build", "-ldflags", ldflags.join(" "), "-a", "-installsuffix", "cgo", "-o", bin/"faas-cli"
+    system "go", "build", *std_go_args(ldflags: ldflags.join(" ")), "-a", "-installsuffix", "cgo"
     bin.install_symlink "faas-cli" => "faas"
   end
 
