@@ -46,8 +46,7 @@ class DockerGen < Formula
 
     cd "src/github.com/jwilder/docker-gen" do
       system buildpath/"bin/glock", "sync", "github.com/jwilder/docker-gen"
-      system "go", "build", "-ldflags", "-X main.buildVersion=#{version}", "-o",
-             bin/"docker-gen", "./cmd/docker-gen"
+      system "go", "build", *std_go_args(ldflags: "-X main.buildVersion=#{version}"), "./cmd/docker-gen"
       prefix.install_metafiles
     end
   end
