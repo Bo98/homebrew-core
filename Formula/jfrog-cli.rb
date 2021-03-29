@@ -15,7 +15,7 @@ class JfrogCli < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-ldflags", "-s -w -extldflags '-static'", "-trimpath", "-o", bin/"jfrog"
+    system "go", "build", *std_go_args(ldflags: "-s -w -extldflags '-static'"), "-o", bin/"jfrog"
     prefix.install_metafiles
     system "go", "generate", "./completion/shells/..."
     bash_completion.install "completion/shells/bash/jfrog"
