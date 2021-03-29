@@ -26,7 +26,7 @@ class Dockviz < Formula
     (buildpath/"src/github.com/justone/dockviz").install buildpath.children
     cd "src/github.com/justone/dockviz" do
       system "govendor", "sync"
-      system "go", "build", "-o", bin/"dockviz"
+      system "go", "build", *std_go_args
       prefix.install_metafiles
     end
   end
