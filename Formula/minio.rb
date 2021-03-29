@@ -33,7 +33,7 @@ class Minio < Formula
       version = release.gsub(/RELEASE\./, "").chomp.gsub(/T(\d+)-(\d+)-(\d+)Z/, 'T\1:\2:\3Z')
       proj = "github.com/minio/minio"
 
-      system "go", "build", *std_go_args, "-ldflags", <<~EOS
+      system "go", "build", *std_go_args(ldflags: <<~EOS)
         -X #{proj}/cmd.Version=#{version}
         -X #{proj}/cmd.ReleaseTag=#{release}
         -X #{proj}/cmd.CommitID=#{Utils.git_head}
