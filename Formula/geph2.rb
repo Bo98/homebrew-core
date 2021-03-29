@@ -20,8 +20,8 @@ class Geph2 < Formula
     bin_path.install Dir["*"]
     cd bin_path/"cmd/geph-client" do
       ENV["CGO_ENABLED"] = "0"
-      system "go", "build", "-o",
-       bin/"geph-client", "-v", "-trimpath"
+      system "go", "build", *std_go_args, "-o",
+       bin/"geph-client", "-v"
     end
   end
 
