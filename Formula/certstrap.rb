@@ -17,7 +17,7 @@ class Certstrap < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-ldflags", "-s -w -X main.version=#{version}", "-trimpath", "-o", bin/"certstrap"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X main.version=#{version}")
     prefix.install_metafiles
   end
 
