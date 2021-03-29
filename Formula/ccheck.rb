@@ -16,7 +16,7 @@ class Ccheck < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-o", bin/"ccheck", "main.go"
+    system "go", "build", *std_go_args, "main.go"
     prefix.install_metafiles
   end
 
