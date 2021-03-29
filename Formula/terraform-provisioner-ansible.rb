@@ -51,7 +51,7 @@ class TerraformProvisionerAnsible < Formula
     Language::Go.stage_deps resources, buildpath/"src"
 
     cd terrapath do
-      system "go", "build"
+      system "go", "build", *std_go_args
       bin.install "terraform-provisioner-ansible"
       prefix.install_metafiles
     end
