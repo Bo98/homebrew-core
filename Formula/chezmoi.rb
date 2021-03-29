@@ -24,7 +24,7 @@ class Chezmoi < Formula
       -X main.date=#{Time.now.utc.rfc3339}
       -X main.builtBy=homebrew
     ].join(" ")
-    system "go", "build", *std_go_args, "-ldflags", ldflags
+    system "go", "build", *std_go_args(ldflags: ldflags)
 
     bash_completion.install "completions/chezmoi-completion.bash"
     fish_completion.install "completions/chezmoi.fish"
