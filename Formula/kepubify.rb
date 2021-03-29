@@ -24,8 +24,7 @@ class Kepubify < Formula
       covergen
       seriesmeta
     ].each do |p|
-      system "go", "build", "-o", bin/p,
-                   "-ldflags", "-s -w -X main.version=#{version}",
+      system "go", "build", *std_go_args(ldflags: "-s -w -X main.version=#{version}"), "-o", bin/p,
                    "./cmd/#{p}"
     end
 
