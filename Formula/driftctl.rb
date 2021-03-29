@@ -15,10 +15,9 @@ class Driftctl < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-ldflags",
-             "-s -w -X github.com/cloudskiff/driftctl/build.env=release
-             -X github.com/cloudskiff/driftctl/pkg/version.version=v#{version}",
-             *std_go_args
+    system "go", "build",
+             *std_go_args(ldflags: "-s -w -X github.com/cloudskiff/driftctl/build.env=release
+             -X github.com/cloudskiff/driftctl/pkg/version.version=v#{version}")
   end
 
   test do
