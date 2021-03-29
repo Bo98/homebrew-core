@@ -17,8 +17,7 @@ class Pumba < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-ldflags", "-s -w -X main.Version=#{version}",
-           "-trimpath", "-o", bin/"pumba", "./cmd"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X main.Version=#{version}"), "./cmd"
     prefix.install_metafiles
   end
 
