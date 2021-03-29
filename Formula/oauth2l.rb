@@ -19,7 +19,7 @@ class Oauth2l < Formula
   def install
     ENV["GO111MODULE"] = "on"
 
-    system "go", "build", "-o", "oauth2l"
+    system "go", "build", *std_go_args, "-o", "oauth2l"
     bin.install "oauth2l"
   end
 
