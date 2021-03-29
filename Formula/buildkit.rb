@@ -30,8 +30,10 @@ class Buildkit < Formula
       -X github.com/moby/buildkit/version.Package=github.com/moby/buildkit
     ]
 
-    system "go", "build", "-mod=vendor", "-trimpath",
-      "-ldflags", ldflags.join(" "), "-o", bin/"buildctl", "./cmd/buildctl"
+    system "go", "build", *std_go_args(ldflags: ldflags.join(" ")),
+                          "-mod=vendor",
+                          "-o", bin/"buildctl",
+                          "./cmd/buildctl"
 
     doc.install Dir["docs/*.md"]
   end
