@@ -20,9 +20,8 @@ class Sonobuoy < Formula
   end
 
   def install
-    system "go", "build", "-ldflags",
-                   "-s -w -X github.com/vmware-tanzu/sonobuoy/pkg/buildinfo.Version=v#{version}",
-                   *std_go_args
+    system "go", "build",
+                   *std_go_args(ldflags: "-s -w -X github.com/vmware-tanzu/sonobuoy/pkg/buildinfo.Version=v#{version}")
     prefix.install_metafiles
   end
 
