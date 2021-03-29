@@ -15,8 +15,7 @@ class Gotop < Formula
 
   def install
     time = `date +%Y%m%dT%H%M%S`.chomp
-    system "go", "build", *std_go_args, "-ldflags",
-           "-X main.Version=#{version} -X main.BuildDate=#{time}", "./cmd/gotop"
+    system "go", "build", *std_go_args(ldflags: "-X main.Version=#{version} -X main.BuildDate=#{time}"), "./cmd/gotop"
   end
 
   test do
