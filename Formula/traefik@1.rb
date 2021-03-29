@@ -36,7 +36,7 @@ class TraefikAT1 < Formula
         system "yarn", "run", "build"
       end
       system "go", "generate"
-      system "go", "build", "-o", bin/"traefik", "./cmd/traefik"
+      system "go", "build", *std_go_args, "-o", bin/"traefik", "./cmd/traefik"
       prefix.install_metafiles
     end
   end
