@@ -33,7 +33,7 @@ class Clair < Formula
       -X main.Version=#{version}
     ].join(" ")
 
-    system "go", "build", *std_go_args, "-ldflags", ldflags, "./cmd/clair"
+    system "go", "build", *std_go_args(ldflags: ldflags), "./cmd/clair"
     (etc/"clair").install resource("test_resource")
   end
 
