@@ -21,7 +21,7 @@ class Httpdiff < Formula
 
   def install
     ENV["GO111MODULE"] = "auto"
-    system "go", "build", "-o", bin/"httpdiff"
+    system "go", "build", *std_go_args
   end
 
   test do
