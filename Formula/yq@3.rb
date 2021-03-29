@@ -19,7 +19,7 @@ class YqAT3 < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-ldflags", "-s -w", *std_go_args, "-o", bin/"yq"
+    system "go", "build", *std_go_args(ldflags: "-s -w"), "-o", bin/"yq"
   end
 
   test do
