@@ -31,7 +31,7 @@ class Stout < Formula
     mkdir_p buildpath/"src/github.com/cloudflare"
     ln_s buildpath, buildpath/"src/github.com/cloudflare/stout"
 
-    system "go", "build", "-o", bin/"stout", "-v", "github.com/cloudflare/stout/src"
+    system "go", "build", *std_go_args, "-v", "github.com/cloudflare/stout/src"
   end
 
   test do
