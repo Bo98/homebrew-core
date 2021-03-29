@@ -23,9 +23,7 @@ class Cacli < Formula
   def install
     cd "cacli" do
       project = "github.com/cloud-annotations/training/cacli"
-      system "go", "build",
-             "-ldflags", "-s -w -X #{project}/version.Version=#{version}",
-             "-o", bin/"cacli"
+      system "go", "build", *std_go_args(ldflags: "-s -w -X #{project}/version.Version=#{version}")
     end
   end
 
