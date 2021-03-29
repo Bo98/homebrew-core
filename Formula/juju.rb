@@ -28,11 +28,9 @@ class Juju < Formula
       -X version.GitCommit=#{Utils.git_head}
       -X version.GitTreeState=clean
     ]
-    system "go", "build", *std_go_args,
-                 "-ldflags", ld_flags.join(" "),
+    system "go", "build", *std_go_args(ldflags: ld_flags.join(" ")),
                  "./cmd/juju"
-    system "go", "build", *std_go_args,
-                 "-ldflags", ld_flags.join(" "),
+    system "go", "build", *std_go_args(ldflags: ld_flags.join(" ")),
                  "-o", bin/"juju-metadata",
                  "./cmd/plugins/juju-metadata"
     bash_completion.install "etc/bash_completion.d/juju"
