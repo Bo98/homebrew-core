@@ -17,8 +17,7 @@ class Wellington < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-ldflags",
-            "-X github.com/wellington/wellington/version.Version=#{version}",
+    system "go", "build", *std_go_args(ldflags: "-X github.com/wellington/wellington/version.Version=#{version}"),
             "-o", bin/"wt", "wt/main.go"
   end
 
