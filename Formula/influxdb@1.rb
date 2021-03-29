@@ -25,7 +25,7 @@ class InfluxdbAT1 < Formula
     ldflags = "-s -w -X main.version=#{version}"
 
     %w[influxd influx influx_tsm influx_stress influx_inspect].each do |f|
-      system "go", "build", "-ldflags", ldflags, *std_go_args, "-o", bin/f, "./cmd/#{f}"
+      system "go", "build", *std_go_args(ldflags: ldflags), "-o", bin/f, "./cmd/#{f}"
     end
 
     etc.install "etc/config.sample.toml" => "influxdb.conf"
