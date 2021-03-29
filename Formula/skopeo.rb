@@ -41,7 +41,7 @@ class Skopeo < Formula
                                             "#{etc/"containers/registries.conf"}",
     ].join(" ")
 
-    system "go", "build", "-tags", buildtags, "-ldflags", ldflags, *std_go_args, "./cmd/skopeo"
+    system "go", "build", "-tags", buildtags, *std_go_args(ldflags: ldflags), "./cmd/skopeo"
 
     (etc/"containers").install "default-policy.json" => "policy.json"
     (etc/"containers/registries.d").install "default.yaml"
