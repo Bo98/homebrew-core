@@ -15,7 +15,7 @@ class Vsh < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", *std_go_args, "-ldflags", "-X main.vshVersion=v#{version}"
+    system "go", "build", *std_go_args(ldflags: "-X main.vshVersion=v#{version}")
   end
 
   test do
