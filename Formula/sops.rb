@@ -16,7 +16,7 @@ class Sops < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-o", bin/"sops", "go.mozilla.org/sops/v3/cmd/sops"
+    system "go", "build", *std_go_args, "go.mozilla.org/sops/v3/cmd/sops"
     pkgshare.install "example.yaml"
   end
 
