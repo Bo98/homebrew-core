@@ -24,7 +24,7 @@ class Doctl < Formula
       #{base_flag}.Label=release
     ].join(" ")
 
-    system "go", "build", "-ldflags", ldflags, *std_go_args, "github.com/digitalocean/doctl/cmd/doctl"
+    system "go", "build", *std_go_args(ldflags: ldflags), "github.com/digitalocean/doctl/cmd/doctl"
 
     (bash_completion/"doctl").write `#{bin}/doctl completion bash`
     (zsh_completion/"_doctl").write `#{bin}/doctl completion zsh`
