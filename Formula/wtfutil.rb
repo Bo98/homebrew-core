@@ -21,7 +21,7 @@ class Wtfutil < Formula
       -X main.version=#{version}
       -X main.date=#{Time.now.iso8601}
     ]
-    system "go", "build", "-trimpath", "-ldflags", ldflags.join(" "), "-o", bin/"wtfutil"
+    system "go", "build", *std_go_args(ldflags: ldflags.join(" "))
   end
 
   test do
