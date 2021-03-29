@@ -17,7 +17,7 @@ class YubikeyAgent < Formula
   depends_on "pinentry-mac"
 
   def install
-    system "go", "build", *std_go_args, "-ldflags", "-X main.Version=v#{version}"
+    system "go", "build", *std_go_args(ldflags: "-X main.Version=v#{version}")
   end
 
   def post_install
