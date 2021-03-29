@@ -24,7 +24,7 @@ class Flux < Formula
 
   def install
     system "make", "build"
-    system "go", "build", "./cmd/flux"
+    system "go", "build", *std_go_args, "./cmd/flux"
     bin.install %w[flux]
     include.install "libflux/include/influxdata"
     lib.install Dir["libflux/target/*/release/libflux.{dylib,a,so}"]
