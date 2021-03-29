@@ -19,7 +19,7 @@ class Goose < Formula
     mv "_go.mod", "go.mod"
     mv "_go.sum", "go.sum"
 
-    system "go", "build", *std_go_args, "-ldflags", "-s -w", "./cmd/goose"
+    system "go", "build", *std_go_args(ldflags: "-s -w"), "./cmd/goose"
   end
 
   test do
