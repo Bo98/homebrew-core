@@ -15,7 +15,7 @@ class Fn < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-ldflags", "-s -w", "-trimpath", "-o", "#{bin}/fn"
+    system "go", "build", *std_go_args(ldflags: "-s -w"), "-o", "#{bin}/fn"
     prefix.install_metafiles
   end
 
