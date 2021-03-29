@@ -28,7 +28,7 @@ class K3sup < Formula
       -X github.com/alexellis/k3sup/cmd.Version=#{version}
       -X github.com/alexellis/k3sup/cmd.GitCommit=#{Utils.git_short_head}
     ]
-    system "go", "build", "-ldflags", ldflags.join(" "), *std_go_args
+    system "go", "build", *std_go_args(ldflags: ldflags.join(" "))
   end
 
   test do
