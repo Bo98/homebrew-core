@@ -16,7 +16,7 @@ class Mockery < Formula
   depends_on "go"
 
   def install
-    system "go", "build", *std_go_args, "-ldflags", "-s -w -X github.com/vektra/mockery/v2/pkg/config.SemVer=#{version}"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X github.com/vektra/mockery/v2/pkg/config.SemVer=#{version}")
   end
 
   test do
