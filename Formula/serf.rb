@@ -25,7 +25,7 @@ class Serf < Formula
       -X github.com/hashicorp/serf/version.VersionPrerelease=
     ].join(" ")
 
-    system "go", "build", *std_go_args, "-ldflags", ldflags, "./cmd/serf"
+    system "go", "build", *std_go_args(ldflags: ldflags), "./cmd/serf"
   end
 
   test do
