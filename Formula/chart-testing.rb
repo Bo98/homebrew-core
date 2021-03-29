@@ -23,7 +23,7 @@ class ChartTesting < Formula
       -X github.com/helm/chart-testing/v#{version.major}/ct/cmd.GitCommit=#{Utils.git_head}
       -X github.com/helm/chart-testing/v#{version.major}/ct/cmd.BuildDate=#{Date.today}
     ].join(" ")
-    system "go", "build", *std_go_args, "-ldflags", ldflags, "-o", bin/"ct", "./ct/main.go"
+    system "go", "build", *std_go_args(ldflags: ldflags), "-o", bin/"ct", "./ct/main.go"
     etc.install "etc" => "ct"
   end
 
