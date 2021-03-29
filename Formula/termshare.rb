@@ -55,7 +55,7 @@ class Termshare < Formula
       # https://github.com/progrium/termshare/issues/9
       inreplace "termshare.go", "code.google.com/p/go.net/websocket",
                                 "golang.org/x/net/websocket"
-      system "go", "build", "-o", bin/"termshare"
+      system "go", "build", *std_go_args
       prefix.install_metafiles
     end
   end
