@@ -27,7 +27,7 @@ class Snag < Formula
     (buildpath/"src/github.com/Tonkpils/").mkpath
     ln_s buildpath, buildpath/"src/github.com/Tonkpils/snag"
 
-    system "go", "build", "-o", bin/"snag", "./src/github.com/Tonkpils/snag"
+    system "go", "build", *std_go_args, "./src/github.com/Tonkpils/snag"
   end
 
   test do
