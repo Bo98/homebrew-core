@@ -15,7 +15,7 @@ class Cointop < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", *std_go_args, "-ldflags", "-X github.com/miguelmota/cointop/cointop.version=#{version}"
+    system "go", "build", *std_go_args(ldflags: "-X github.com/miguelmota/cointop/cointop.version=#{version}")
   end
 
   test do
