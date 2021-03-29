@@ -21,7 +21,7 @@ class Ooniprobe < Formula
 
   def install
     system "go", "run", "./internal/cmd/getresources"
-    system "go", "build", *std_go_args, "-ldflags", "-s -w", "./cmd/ooniprobe"
+    system "go", "build", *std_go_args(ldflags: "-s -w"), "./cmd/ooniprobe"
     (var/"ooniprobe").mkpath
   end
 
