@@ -22,7 +22,7 @@ class Ironcli < Formula
     (buildpath/"src/github.com/iron-io/ironcli").install buildpath.children
     cd "src/github.com/iron-io/ironcli" do
       system "dep", "ensure", "-vendor-only"
-      system "go", "build", "-o", bin/"iron"
+      system "go", "build", *std_go_args, "-o", bin/"iron"
       prefix.install_metafiles
     end
   end
