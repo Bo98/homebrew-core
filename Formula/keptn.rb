@@ -16,7 +16,7 @@ class Keptn < Formula
   def install
     ENV["GO111MODULE"] = "auto"
     cd buildpath/"cli" do
-      system "go", "build", *std_go_args, "-ldflags", "-s -w -X main.Version=#{version} -X main.KubeServerVersionConstraints=\"\""
+      system "go", "build", *std_go_args(ldflags: "-s -w -X main.Version=#{version} -X main.KubeServerVersionConstraints=\"\"")
     end
   end
 
