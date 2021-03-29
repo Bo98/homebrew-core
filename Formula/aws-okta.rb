@@ -20,7 +20,7 @@ class AwsOkta < Formula
   end
 
   def install
-    system "go", "build", *std_go_args, "-ldflags", "-s -w -X main.Version=#{version}"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X main.Version=#{version}")
   end
 
   test do
