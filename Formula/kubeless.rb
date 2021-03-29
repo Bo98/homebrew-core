@@ -19,8 +19,7 @@ class Kubeless < Formula
     ldflags = %W[
       -s -w -X github.com/kubeless/kubeless/pkg/version.Version=v#{version}
     ]
-    system "go", "build", "-ldflags", ldflags.join(" "), "-trimpath",
-           "-o", bin/"kubeless", "./cmd/kubeless"
+    system "go", "build", *std_go_args(ldflags: ldflags.join(" ")), "./cmd/kubeless"
     prefix.install_metafiles
   end
 
