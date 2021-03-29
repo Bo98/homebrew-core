@@ -22,7 +22,7 @@ class Qpm < Formula
     ENV["GO111MODULE"] = "auto"
     (buildpath/"src").mkpath
     ln_s buildpath, "src/qpm.io"
-    system "go", "build", "-o", "bin/qpm", "qpm.io/qpm"
+    system "go", "build", *std_go_args, "qpm.io/qpm"
     bin.install "bin/qpm"
   end
 
