@@ -28,7 +28,7 @@ class Kubebuilder < Formula
       -X sigs.k8s.io/kubebuilder/v2/cmd/version.gitCommit=#{Utils.git_head}
       -X sigs.k8s.io/kubebuilder/v2/cmd/version.buildDate=#{Time.now.iso8601}
     ]
-    system "go", "build", *std_go_args, "-ldflags", ldflags.join(" "), "./cmd"
+    system "go", "build", *std_go_args(ldflags: ldflags.join(" ")), "./cmd"
     prefix.install_metafiles
   end
 
