@@ -15,8 +15,8 @@ class Gitleaks < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-ldflags", "-X github.com/zricethezav/gitleaks/v#{version.major}/version.Version=#{version}",
-                 *std_go_args
+    system "go", "build",
+                 *std_go_args(ldflags: "-X github.com/zricethezav/gitleaks/v#{version.major}/version.Version=#{version}")
   end
 
   test do
