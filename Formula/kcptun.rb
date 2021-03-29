@@ -16,9 +16,9 @@ class Kcptun < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-ldflags", "-X main.VERSION=#{version} -s -w",
+    system "go", "build", *std_go_args(ldflags: "-X main.VERSION=#{version} -s -w"),
       "-o", bin/"kcptun_client", "github.com/xtaci/kcptun/client"
-    system "go", "build", "-ldflags", "-X main.VERSION=#{version} -s -w",
+    system "go", "build", *std_go_args(ldflags: "-X main.VERSION=#{version} -s -w"),
       "-o", bin/"kcptun_server", "github.com/xtaci/kcptun/server"
 
     etc.install "examples/local.json" => "kcptun_client.json"
