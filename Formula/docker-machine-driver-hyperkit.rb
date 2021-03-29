@@ -28,8 +28,7 @@ class DockerMachineDriverHyperkit < Formula
 
     cd dir do
       system "dep", "ensure", "-vendor-only"
-      system "go", "build", "-o", "#{bin}/docker-machine-driver-hyperkit",
-             "-ldflags", "-X main.version=#{version}"
+      system "go", "build", *std_go_args(ldflags: "-X main.version=#{version}"), "-o", "#{bin}/docker-machine-driver-hyperkit"
       prefix.install_metafiles
     end
   end
