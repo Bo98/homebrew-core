@@ -17,7 +17,7 @@ class Fabio < Formula
   depends_on "consul"
 
   def install
-    system "go", "build", "-ldflags", "-s -w", "-trimpath", "-o", bin/"fabio"
+    system "go", "build", *std_go_args(ldflags: "-s -w")
     prefix.install_metafiles
   end
 
