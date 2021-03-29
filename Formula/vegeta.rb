@@ -24,7 +24,7 @@ class Vegeta < Formula
       -X main.Date=#{build_time}
     ]
 
-    system "go", "build", "-o", bin/"vegeta", "-ldflags", ldflags.join(" ")
+    system "go", "build", *std_go_args(ldflags: ldflags.join(" "))
   end
 
   test do
