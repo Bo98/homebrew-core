@@ -23,7 +23,7 @@ class Aliddns < Formula
       -X main.commit=#{Utils.git_head}
       -X main.builtBy=homebrew
     ]
-    system "go", "build", "-mod=vendor", "-ldflags", ldflags.join(" "), *std_go_args
+    system "go", "build", "-mod=vendor", *std_go_args(ldflags: ldflags.join(" "))
     pkgetc.install "aliddns.yaml"
   end
 
