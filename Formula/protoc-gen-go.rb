@@ -17,7 +17,7 @@ class ProtocGenGo < Formula
   depends_on "protobuf"
 
   def install
-    system "go", "build", *std_go_args, "-ldflags", "-s -w", "./protoc-gen-go"
+    system "go", "build", *std_go_args(ldflags: "-s -w"), "./protoc-gen-go"
     prefix.install_metafiles
   end
 
