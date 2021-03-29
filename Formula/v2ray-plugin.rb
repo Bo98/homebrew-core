@@ -22,7 +22,7 @@ class V2rayPlugin < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-ldflags", "-X main.VERSION=v#{version}", "-o", bin/"v2ray-plugin"
+    system "go", "build", *std_go_args(ldflags: "-X main.VERSION=v#{version}")
   end
 
   test do
