@@ -24,7 +24,7 @@ class Volt < Formula
   end
 
   def install
-    system "go", "build", "-ldflags", "-s -w", "-trimpath", "-o", bin/"volt"
+    system "go", "build", *std_go_args(ldflags: "-s -w")
     prefix.install_metafiles
 
     bash_completion.install "_contrib/completion/bash" => "volt"
