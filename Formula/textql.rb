@@ -27,8 +27,7 @@ class Textql < Formula
 
     cd "src/github.com/dinedal/textql" do
       system "glide", "install"
-      system "go", "build", "-ldflags", "-X main.VERSION=#{version}",
-             "-o", bin/"textql", "./textql"
+      system "go", "build", *std_go_args(ldflags: "-X main.VERSION=#{version}"), "./textql"
       man1.install "man/textql.1"
       prefix.install_metafiles
     end
