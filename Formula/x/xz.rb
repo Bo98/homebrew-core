@@ -8,10 +8,9 @@ class Xz < Formula
   mirror "http://archive.org/download/xz-5.4.6/xz-5.4.6.tar.gz"
   sha256 "aeba3e03bf8140ddedf62a0a367158340520f6b384f75ca6045ccc6c0d43fd5c"
   license all_of: [
-    "0BSD",
+    :public_domain,
     "LGPL-2.1-or-later",
     "GPL-2.0-or-later",
-    "GPL-3.0-or-later",
   ]
   version_scheme 1
 
