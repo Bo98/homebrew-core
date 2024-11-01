@@ -33,14 +33,6 @@ class OpenjdkAT8 < Formula
   uses_from_macos "unzip"
   uses_from_macos "zip"
 
-  # macOS Sonoma or newer do not include the required headers for JNF (JavaNativeFoundation.framework)
-  on_sonoma :or_newer do
-    resource "JavaNativeFoundation" do
-      url "https://github.com/apple/openjdk/archive/refs/tags/iTunesOpenJDK-1014.0.2.12.1.tar.gz"
-      sha256 "e8556a73ea36c75953078dfc1bafc9960e64593bc01e733bc772d2e6b519fd4a"
-    end
-  end
-
   on_monterey :or_newer do
     depends_on "gawk" => :build
   end
@@ -132,12 +124,7 @@ class OpenjdkAT8 < Formula
         --with-zlib=system
       ]
 
-      if MacOS.version >= :sonoma
-        resource("JavaNativeFoundation").stage do
-          (buildpath/"JavaNativeFoundation").install(Pathname.pwd/"apple/JavaNativeFoundation")
-        end
-        args << "--with-extra-cflags=-isystem #{buildpath/"JavaNativeFoundation"}"
-      end
+      ENV["HOMEBREW_SDKROOT"] = "/Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk"
     else
       args += %W[
         --with-toolchain-type=gcc
