@@ -33,6 +33,14 @@ class OpenjdkAT8 < Formula
   uses_from_macos "unzip"
   uses_from_macos "zip"
 
+  # macOS Sonoma or newer do not include the required headers for JNF (JavaNativeFoundation.framework)
+  on_sonoma :or_newer do
+    resource "JavaNativeFoundation" do
+      url "https://github.com/apple/openjdk/archive/refs/tags/iTunesOpenJDK-1014.0.2.12.1.tar.gz"
+      sha256 "e8556a73ea36c75953078dfc1bafc9960e64593bc01e733bc772d2e6b519fd4a"
+    end
+  end
+
   on_monterey :or_newer do
     depends_on "gawk" => :build
   end
@@ -124,24 +132,11 @@ class OpenjdkAT8 < Formula
         --with-zlib=system
       ]
 
-      # Work around SDK issues with JavaVM framework.
-      if MacOS.version <= :catalina
-        sdk_path = MacOS::CLT.sdk_path(MacOS.version)
-        ENV["SDKPATH"] = ENV["SDKROOT"] = sdk_path
-        javavm_framework_path = sdk_path/"System/Library/Frameworks/JavaVM.framework/Frameworks"
-        args += %W[
-          --with-extra-cflags=-F#{javavm_framework_path}
-          --with-extra-cxxflags=-F#{javavm_framework_path}
-        ]
-        ldflags << "-F#{javavm_framework_path}"
-      # Fix "'JavaNativeFoundation/JavaNativeFoundation.h' file not found" issue on MacOS Sonoma.
-      elsif MacOS.version == :sonoma
-        javavm_framework_path = "/Library/Developer/CommandLineTools/SDKs/MacOSX13.sdk/System/Library/Frameworks"
-        args += %W[
-          --with-extra-cflags=-F#{javavm_framework_path}
-          --with-extra-cxxflags=-F#{javavm_framework_path}
-        ]
-        ldflags << "-F#{javavm_framework_path}"
+      if MacOS.version >= :sonoma
+        resource("JavaNativeFoundation").stage do
+          (buildpath/"JavaNativeFoundation").install(Pathname.pwd/"apple/JavaNativeFoundation")
+        end
+        args << "--with-extra-cflags=-isystem #{buildpath/"JavaNativeFoundation"}"
       end
     else
       args += %W[
