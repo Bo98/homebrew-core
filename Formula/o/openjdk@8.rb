@@ -123,8 +123,6 @@ class OpenjdkAT8 < Formula
         --with-toolchain-type=clang
         --with-zlib=system
       ]
-
-      ENV["HOMEBREW_SDKROOT"] = "/Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk"
     else
       args += %W[
         --with-toolchain-type=gcc
