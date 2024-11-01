@@ -1,0 +1,21 @@
+name: Test
+
+on: push
+
+jobs:
+  test:
+    runs-on: macos-13
+    env:
+      HOMEBREW_CORE_GIT_REMOTE: https://github.com/${{github.repository}}
+      HOMEBREW_NO_INSTALL_FROM_API: 1
+
+    steps:
+      - run: sudo rm -rf /Library/Developer/CommandLineTools/SDKs/MacOSX13.sdk/System/Library/Frameworks/JavaNativeFoundation.framework/Versions/A/Headers
+      - run: |
+          cd "$(brew --repo homebrew/core)"
+          git remote set-url origin "https://github.com/$GITHUB_REPOSITORY"
+          git fetch origin "$GITHUB_SHA" '+refs/heads/*:refs/remotes/origin/*'
+          git remote set-head origin --auto
+          git checkout --force -B master FETCH_HEAD
+      - run: cat "$(brew --repo Homebrew/core)/Formula/o/openjdk@8.rb"
+      - run: brew install -s --verbose openjdk@8
