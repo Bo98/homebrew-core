@@ -131,7 +131,8 @@ class OpenjdkAT8 < Formula
       ]
 
       resource("JavaNativeFoundation").stage do
-        (buildpath/"JavaNativeFoundation").install(Pathname.pwd/"apple/JavaNativeFoundation")
+        (buildpath/"JavaNativeFoundation").install(Pathname.pwd/"apple/JavaNativeFoundation/JavaNativeFoundation")
+        (buildpath/"hotspot/agent/src/os/bsd").install_symlink buildpath/"JavaNativeFoundation"
       end
       args << "--with-extra-cflags=-isystem #{buildpath/"JavaNativeFoundation"}"
     else
